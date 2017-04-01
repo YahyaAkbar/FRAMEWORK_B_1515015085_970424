@@ -10,6 +10,12 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('dosen/keterangan', 'DosenController@ket_dosen');
+Route::get('dosen/semua_matkul', 'Dosen_matakuliahController@semua_matkul');
+Route::get('dosen/semua', 'Dosen_matakuliahController@semua_dosen');
+Route::get('mahasiswa_pengguna','MahasiswaController@Mahasiswa');
+Route::get('mahasiswa_pengguna/semua', 'MahasiswaController@semua_mahasiswa');
+Route::get('mahasiswa/jadwal/ruangan', 'Jadwal_matakuliahController@jadwal_kulmhs');
 
 Route::get('/', function () {
     return view('welcome');

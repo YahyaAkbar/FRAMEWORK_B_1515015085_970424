@@ -17,11 +17,19 @@ class DosenController extends Controller
     }
     public function simpan(){
     	$dosen = new Dosen();
-    	$dosen->nama = "Andre Prasetya Rahman";
-    	$dosen->nip = "1515015080";
-    	$dosen->alamat = "Perjuangan 07";
+    	$dosen->nama = "Muhamad Yahya Akbar";
+    	$dosen->nip = "1515015085";
+    	$dosen->alamat = "Jl. Suryanata";
     	$dosen->pengguna_id = 3;
     	$dosen->save();
     	return "Data Dosen dengan Nama {$dosen->nama} telah disimpan";
+}
+    public function ket_dosen() {
+    $keterangan = dosen::all();  //untuk menampilkan semua data dosen
+    foreach ($keterangan as $ket) {  //panggilnya pakai foreach
+    echo "nama:" .$ket->nama;
+    echo "<br>";
+    echo " di buat oleh:" .$ket->pengguna->username;
+    echo "<p>";}
 }
 }
