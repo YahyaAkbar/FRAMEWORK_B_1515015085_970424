@@ -10,10 +10,39 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+use Illuminate\Http\Request;
+
+Route::get('/login','SesiController@form');
+Route::post('/login','SesiController@validasi');
+Route::get('/logout','SesiController@logout');
+Route::get('/','SesiController@index');
+Route::group(['middleware'=>'AutentifikasiUser'],function(){
+
+	Route::get('ujiuji1',function()
+{
+	echo Form::open(['url'=>'ujiuji']).
+		Form::label('Nama').
+		Form::text('nama',null).
+		Form::submit('kirim').
+		Form::close();
+});
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+/*Route::get('/',function()
+{
+	return \App\DosenMatakuliah::where('dosen',function($query)
+	{
+		$query->where('nama','like','%s%');
+	})
+	->with('dosen')
+	->groupBy('dosen_id')
+	->get();
+});*/
+Route::get('ujiHas','RelationshipRebornController@ujiHas');
+Route::get('ujiDoesntHave','RelationshipRebornController@ujiDoesntHave');
 
 Route::get('mahasiswa_pengguna', 'MahasiswaController@mahasiswa');
 Route::get('mahasiswa_pengguna/semua', 'MahasiswaController@semua_mahasiswa');
@@ -80,3 +109,30 @@ Route::get('jadwal_matakuliah/edit/{jadwal_matakuliah}', 'Jadwal_MatakuliahContr
 Route::post('jadwal_matakuliah/edit/{jadwal_matakuliah}', 'Jadwal_MatakuliahController@update');
 Route::get('jadwal_matakuliah/hapus/{jadwal_matakuliah}', 'Jadwal_MatakuliahController@hapus');
 
+/*Route::get('/',function (Illuminate\Http\Request $request)
+{
+	echo "ini adalah request dari method get". $request->nama;
+});*/
+});
+/*use Illuminate\Http\Request;
+Route::get('/', function () {
+    echo Form::open(['url'=>'/']).
+    	 Form::label('nama').
+    	 Form::text('nama',null).
+    	 Form::submit('kirim').
+    	 Form::close();
+});
+Route::post('/',function (Request $request)
+{
+	echo "Hasil dari Form input tadi nama : ".$request->nama;
+});
+
+Route::get('/login','SesiController@form');
+Route::post('/login','SesiController@validasi');
+Route::get('/logout','SesiController@logout');
+Route::get('/','SesiController@index');
+
+Route::grup(['middleware'=>'AutentifikasiUser'],function()
+{
+
+});*/
